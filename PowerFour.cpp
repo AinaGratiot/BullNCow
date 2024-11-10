@@ -9,6 +9,9 @@ int m_rows = 6;
 int m_cols = 7;
 string PlayerName = ""; //variable globale au programme
 string PlayerMove = ""; //variable globale au programme
+string vide = ".";
+string rouge = PlayerName;
+string jaune = "V";
 
     Grille::Grille()
     {
@@ -21,20 +24,35 @@ string PlayerMove = ""; //variable globale au programme
         tab = vector<vector<char>>(m_rows, vector<char>(m_cols, '*'));
     }
 
-    void affiche()
+    void affiche(Grille const& Grille)
     {
-        cout << endl;
-
-        for (int i = 0; i < m_rows; i++)
+        for (auto ligne : Grille)
         {
-            for (int j = 0; j < m_cols; j++)
+            cout << " |";
+            for (auto kase : ligne)
             {
-                //affiche un tableau avec les cases qui se séparent par | et dont le centre est .
-                //cout << tab [i][j] << "| . ";
+                if (kase == vide)
+                {
+                    std::cout << " ";
+                }
+                else if (kase == rouge)
+                {
+                    std::cout << PlayerName;
+                }
+                else if (kase == jaune)
+                {
+                    std::cout << "V";
+                }
+                cout << "|";
             }
             cout << endl;
         }
-        cout << endl;
+        cout << "=";
+        for (int i(1); i <= Grille[0].size();++i)
+        {
+            cout << "=" << i;
+        }
+        cout << "==" << endl;
     }
     string GetPlayerName() {
         string PlayerName;
